@@ -1,22 +1,27 @@
-# ex1.py
+﻿# ex1.py
 
-def is_prime(n: int) -> bool:
-    """Return True if n is a prime number, otherwise False."""
-    if n <= 1:
+from math import isqrt
+
+
+def is_prime(number: int) -> bool:
+    """Return True if `number` is a prime integer, otherwise False."""
+    if number <= 1:
         return False
-    if n <= 3:
-        return True
-    if n % 2 == 0:
-        return False
-    i = 3
-    while i * i <= n:
-        if n % i == 0:
+    if number % 2 == 0:
+        return number == 2
+
+    limit = isqrt(number)
+    for divisor in range(3, limit + 1, 2):
+        if number % divisor == 0:
             return False
-        i += 2
     return True
 
 
-if __name__ == "__main__":
-    for value in [1, 2, 3, 4, 17, 18, 19, 20]:
+def main() -> None:
+    numbers = [1, 2, 3, 4, 17, 18, 19, 20]
+    for value in numbers:
         print(f"{value} is prime: {is_prime(value)}")
 
+
+if __name__ == "__main__":
+    main()

@@ -1,72 +1,37 @@
 ﻿# README
 
-Este arquivo descreve o funcionamento do código Python presente em `ex1.py`, que implementa uma função para verificar números primos.
+Este repositório contém uma função simples em Python para verificar se um número é primo.
 
-## O que o código faz
+## Arquivo principal
 
-A função `is_prime(n)` determina se um número inteiro `n` é primo. Ela retorna `True` se `n` for primo e `False` caso contrário.
+- `ex1.py`: implementação de `is_prime(number)`.
+- A função retorna `True` quando o valor informado é primo e `False` quando não é.
 
-## Explicação do código em `ex1.py`
+## Como a função funciona
 
-1. `# ex1.py`
-   - Comentário indicando o nome do arquivo.
+1. Números menores ou iguais a 1 não são primos.
+2. O número 2 é o único número primo par.
+3. Números pares maiores que 2 não são primos.
+4. Para números ímpares maiores que 2, o código testa divisores ímpares a partir de 3.
+5. A verificação vai apenas até a raiz inteira de `number` com `math.isqrt(number)`.
 
-2. `def is_prime(n: int) -> bool:`
-   - Declaração da função `is_prime`.
-   - Recebe um inteiro `n` e retorna um valor booleano.
+## Por que essa implementação é eficiente
 
-3. `    """Return True if n is a prime number, otherwise False."""`
-   - Docstring explicando o propósito da função.
+- Elimina divisões por números pares.
+- Verifica apenas até a raiz quadrada do número.
+- Usa `range(3, limit + 1, 2)` para testar apenas divisores ímpares.
 
-4. `    if n <= 1:`
-   - Verifica se `n` é menor ou igual a 1.
+## Execução
 
-5. `        return False`
-   - 0, 1 e números negativos não são primos.
+Execute o arquivo diretamente:
 
-6. `    if n <= 3:`
-   - Verifica se `n` é 2 ou 3.
-
-7. `        return True`
-   - 2 e 3 são primos.
-
-8. `    if n % 2 == 0:`
-   - Verifica se `n` é divisível por 2.
-
-9. `        return False`
-   - Números pares maiores que 2 não são primos.
-
-10. `    i = 3`
-    - Inicializa o divisor `i` com 3.
-
-11. `    while i * i <= n:`
-    - Loop que verifica divisores ímpares até a raiz quadrada de `n`.
-
-12. `        if n % i == 0:`
-    - Verifica se `n` é divisível por `i`.
-
-13. `            return False`
-    - Se existir um divisor, `n` não é primo.
-
-14. `        i += 2`
-    - Avança para o próximo número ímpar.
-
-15. `    return True`
-    - Se não foi encontrado divisor, `n` é primo.
-
-## Execução direta do arquivo
-
-No final do arquivo, existe um bloco:
-
-```python
-if __name__ == "__main__":
-    for value in [1, 2, 3, 4, 17, 18, 19, 20]:
-        print(f"{value} is prime: {is_prime(value)}")
+```bash
+python ex1.py
 ```
 
-Isso significa que, ao executar `python ex1.py`, o programa testa alguns valores e imprime se cada um é primo.
+Isso imprime se cada número da lista de exemplo é primo.
 
-## Exemplo de saída
+## Saída esperada
 
 - `1 is prime: False`
 - `2 is prime: True`
